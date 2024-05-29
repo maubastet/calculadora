@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Precios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            margin: 0;
+        }
+        .calculator {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .calculator h2 {
+            text-align: center;
+        }
+        .calculator select, .calculator input, .calculator button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .calculator button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Calcula el Precio</h2>
+    <form id="priceCalculator">
+        <label for="product">Tipo de Tubo:</label>
+        <select id="product" name="product" required>
+            <option value="0">Seleccione el tipo de tubo</option>
+            <option value="1">Tubo transparente</option>
+            <option value="2">Tubo de PVC negro o blanco</option>
+            <option value="3">Tubo de Aluminio</option>
+        </select>
+        
+        <label for="meters">Cantidad de Metros:</label>
+        <input type="number" id="meters" name="meters" min="1" required>
+        
+        <button type="button" onclick="calculatePrice()">Calcular</button>
+    </form>
+    <div class="result">Precio Total: $<span id="totalPrice">0.00</span></div>
+</div>
+
+<script>
+    function calculatePrice() {
+        var product = document.getElementById('product').value;
+        var meters = document.getElementById('meters').value;
+
+        // Define los precios para cada tipo de tubo
+        var price1 = 10; // Precio del Tubo transparente
+        var price2 = 15; // Precio del Tubo de PVC negro o blanco
+        var price3 = 20; // Precio del Tubo de Aluminio
+
+        var totalPrice = 0;
+
+        if (product == "1") {
+            totalPrice = meters * price1;
+        } else if (product == "2") {
+            totalPrice = meters * price2;
+        } else if (product == "3") {
+            totalPrice = meters * price3;
+        }
+
+        document.getElementById('totalPrice').innerText = totalPrice.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
